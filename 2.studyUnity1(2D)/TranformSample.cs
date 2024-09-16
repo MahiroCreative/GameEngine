@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class TransformSample : MonoBehaviour
+{
+    //à⁄ìÆä÷òA
+    float speed = 0.2f;
+    Vector3 moveX, moveY;
+
+    //ägëÂÅAèkè¨ó 
+    float scaleSize = 0.5f;
+    Vector3 delScale;
+
+    //âÒì]
+    Vector3 arrow = new Vector3(0,1,0);//é≤
+    float angle = 0.5f;//âÒì]ó 
+    Quaternion qr,ql;
+
+
+    private void Start()
+    {
+        //à⁄ìÆó ÇÃçÏê¨
+        moveX = new Vector3(speed,0,0);
+        moveY = new Vector3(0, speed, 0);
+
+        //âÒì]ó ÇÃçÏê¨
+        delScale = new Vector3(scaleSize,scaleSize,scaleSize);
+
+        //âÒì]ÉNÉHÅ[É^ÉjÉIÉìÇÃçÏê¨
+        qr = Quaternion.AngleAxis(-angle,arrow);
+        ql = Quaternion.AngleAxis(angle, arrow);
+    }
+
+    private void Update()
+    {
+        //à⁄ìÆ
+        //ç∂
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.transform.position -= moveX;
+        }
+        //âE
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            this.transform.position += moveX;
+        }
+        //è„
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            this.transform.position += moveY;
+        }
+        //â∫
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            this.transform.position -= moveY;
+        }
+
+        //ägëÂèkè¨
+        if(Input.GetKey(KeyCode.Q))//ägëÂ
+        {
+            this.transform.localScale += delScale;
+        }
+        if(Input.GetKey(KeyCode.Z))//èkè¨
+        {
+            this.transform.localScale -= delScale;
+        }
+
+        //âÒì]
+        if(Input.GetMouseButton(1))//âE
+        {
+            this.transform.rotation = qr * this.transform.rotation;
+        }
+        if (Input.GetMouseButton(0))//ç∂
+        {
+            this.transform.rotation = ql * this.transform.rotation;
+        }
+
+    }
+
+}
