@@ -1,6 +1,4 @@
-﻿using System;
-
-/*変数の作成(宣言)*/
+﻿/*変数の作成(宣言)*/
 int inum;//整数小
 long lnum;//整数大
 float fnum;//実数小
